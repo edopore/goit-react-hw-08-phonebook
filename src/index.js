@@ -5,11 +5,15 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { persistor, store } from 'components/async_redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { RouterProvider } from 'react-router-dom';
+import Routes from './routes/Routes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <PersistGate loading={null} persistor={persistor}>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={Routes}>
+        <App />
+      </RouterProvider>
     </Provider>
   </PersistGate>
 );

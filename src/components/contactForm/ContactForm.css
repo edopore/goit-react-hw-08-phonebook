@@ -19,9 +19,18 @@ input {
   padding: 10px;
   width: 150px;
   border-radius: 5px;
-  background: green;
-  color: white;
   border-color: transparent;
+  font-weight: 600;
+  color: white;
+}
+.btn-submit {
+  background: #5ace30d5;
+}
+.btn-cancel {
+  background: #ce3030;
+}
+.btn-primary {
+  background-color: #21a0df;
 }
 .btn:hover {
   cursor: pointer;
