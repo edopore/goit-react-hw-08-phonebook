@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './Form.css';
 
 export default function Form(props) {
   return (
@@ -9,6 +10,12 @@ export default function Form(props) {
           <h2>{props.title}</h2>
           <hr />
         </div>
+        {props.title === 'Sign Up' && (
+          <div className="flex mb-2">
+            <label htmlFor="name">Full Name:</label>
+            <input type="name" name="name" id="name" />
+          </div>
+        )}
         <div className="flex mb-2">
           <label htmlFor="email">Email:</label>
           <input type="email" name="email" id="email" />
@@ -17,7 +24,7 @@ export default function Form(props) {
           <label htmlFor="">Password:</label>
           <input type="password" name="password" id="password" />
         </div>
-        <div className="flex mb-2">
+        <div className="flex-form--btn mb-2">
           <button className="btn btn-submit">{props.title}</button>
           <NavLink to={'/'}>
             <button className="btn btn-cancel">Cancel</button>

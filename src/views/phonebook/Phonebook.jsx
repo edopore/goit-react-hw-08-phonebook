@@ -15,6 +15,7 @@ import { filterContact } from 'components/async_redux/contactSlice';
 import ContactForm from 'components/contactForm/ContactForm';
 import Filter from 'components/filter/Filter';
 import Contacts from 'components/contacts/Contacts';
+import UserMenu from 'components/usermenu/UserMenu';
 
 function Phonebook() {
   const dispatch = useDispatch();
@@ -66,9 +67,9 @@ function Phonebook() {
   const handleFilter = event => {
     dispatch(filterContact(event.target.value));
   };
-
   return (
     <div className="app">
+      <UserMenu />
       <h1>Phonebook</h1>
       <ContactForm handleAddContacts={onAddContacts} />
       <h2>Contacts</h2>

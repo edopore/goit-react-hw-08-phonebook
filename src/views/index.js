@@ -1,6 +1,6 @@
 import Home from './home/Home';
-import Login from './Login';
-import Phonebook from './Phonebook';
-import Signup from './Signup';
+import Login from './login/Login';
+import Phonebook from './phonebook/Phonebook';
+import Signup from './signup/Signup';
 
 export { Home, Login, Phonebook, Signup };
