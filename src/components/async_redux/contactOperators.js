@@ -1,7 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { BASE_URL } from 'utils/utils';
-import { getAuthInfo } from './selectors';
-import { useSelector } from 'react-redux';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetch',
