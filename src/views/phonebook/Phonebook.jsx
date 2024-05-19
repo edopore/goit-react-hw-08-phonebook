@@ -7,6 +7,7 @@ import {
   fetchContacts,
 } from 'components/async_redux/contactOperators';
 import {
+  getAuthInfo,
   getContacts,
   getErrorStatus,
   getIsLoading,
@@ -19,6 +20,8 @@ import UserMenu from 'components/usermenu/UserMenu';
 
 function Phonebook() {
   const dispatch = useDispatch();
+
+  const getInfoUser = useSelector(getAuthInfo);
 
   const contacts = useSelector(getContacts);
   const isLoading = useSelector(getIsLoading);
@@ -38,30 +41,27 @@ function Phonebook() {
   };
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    dispatch(fetchContacts(getInfoUser));
+  }, [dispatch, getInfoUser]);
 
   const onAddContacts = event => {
     event.preventDefault();
 
-    const name = event.target.name.value;
-    const phoneNumber = event.target.number.value;
+    const newContact = {
+      name: event.target.name.value,
+      number: event.target.number.value,
+    };
 
-    searchContact(name)
-      ? alert(`${name} already exists`)
-      : dispatch(
-          createContact({
-            name: name,
-            phoneNumber: phoneNumber,
-          })
-        );
+    searchContact(event.target.name.value)
+      ? alert(`${event.target.name.value} already exists`)
+      : dispatch(createContact({ getInfoUser, newContact }));
 
     event.target.reset();
   };
 
   const onDeleteContact = event => {
-    dispatch(deleteContact(event.target.id));
-    dispatch(fetchContacts());
+    dispatch(deleteContact({ getInfoUser, contactId: event.target.id }));
+    dispatch(fetchContacts(getInfoUser));
   };
 
   const handleFilter = event => {

@@ -10,7 +10,6 @@ export default function UserMenu() {
   const authInfo = useSelector(getAuthInfo);
   const handleLogOut = event => {
     event.preventDefault();
-    console.log('LogOut');
     dispatch(authLogOut(authInfo));
   };
 

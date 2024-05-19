@@ -1,12 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-const BASE_URL = 'https://663979bf1ae792804bebdebc.mockapi.io/api/';
+import { BASE_URL } from 'utils/utils';
+import { getAuthInfo } from './selectors';
+import { useSelector } from 'react-redux';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetch',
-  async (_, thunkAPI) => {
+  async (myToken, thunkAPI) => {
     try {
-      const response = await fetch(BASE_URL + 'contacts');
+      const response = await fetch(BASE_URL + 'contacts', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${myToken}`,
+        },
+      });
       const data = await response.json();
       return data;
     } catch (error) {
@@ -16,12 +23,15 @@ export const fetchContacts = createAsyncThunk(
 );
 export const createContact = createAsyncThunk(
   'contacts/createContact',
-  async (contact, thunkAPI) => {
+  async ({ getInfoUser, newContact }, thunkAPI) => {
     try {
       const OPTIONS = {
         method: 'POST',
-        body: JSON.stringify(contact),
-        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getInfoUser}`,
+        },
+        body: JSON.stringify(newContact),
       };
       const response = await fetch(BASE_URL + 'contacts', OPTIONS);
       const data = await response.json();
@@ -33,10 +43,14 @@ export const createContact = createAsyncThunk(
 );
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
-  async (contactId, thunkAPI) => {
+  async ({ getInfoUser, contactId }, thunkAPI) => {
     try {
       const OPTIONS = {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getInfoUser}`,
+        },
       };
       const response = await fetch(BASE_URL + `contacts/${contactId}`, OPTIONS);
       const data = await response.json();

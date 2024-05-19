@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { BASE_URL } from 'utils';
+import { BASE_URL } from 'utils/utils';
 
 export const authlogin = createAsyncThunk(
   'auth/login',
@@ -24,8 +24,6 @@ export const authLogOut = createAsyncThunk(
   'auth/logout',
   async (myToken, thunkAPI) => {
     try {
-      console.log(myToken);
-      console.log(typeof myToken);
       const response = await fetch(BASE_URL + 'users/logout', {
         method: 'POST',
         headers: {
@@ -34,7 +32,6 @@ export const authLogOut = createAsyncThunk(
         },
       });
       const data = await response.json();
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -45,7 +42,6 @@ export const authLogOut = createAsyncThunk(
 export const authSignUp = createAsyncThunk(
   'auth/signup',
   async (body, thunkAPI) => {
-    console.log(body);
     try {
       const response = await fetch(BASE_URL + 'users/signup', {
         method: 'POST',
@@ -55,7 +51,6 @@ export const authSignUp = createAsyncThunk(
         body: JSON.stringify(body),
       });
       const data = await response.json();
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

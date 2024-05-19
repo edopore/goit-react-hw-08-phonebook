@@ -9,7 +9,6 @@ function Login() {
   const dispatch = useDispatch();
 
   const userInfo = useSelector(getInfo);
-  console.log(userInfo);
 
   const onLoginSubmit = event => {
     event.preventDefault();

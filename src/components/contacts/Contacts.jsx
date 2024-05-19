@@ -11,7 +11,7 @@ export default class Contacts extends Component {
             return (
               <li className="contact-list__item" key={contact.id}>
                 <p>
-                  {contact.name}: {contact.phoneNumber}
+                  {contact.name}: {contact.number}
                 </p>
                 <button
                   onClick={this.props.handleDeleteContact}

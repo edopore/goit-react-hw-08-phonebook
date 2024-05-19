@@ -21,7 +21,7 @@ export default function Form(props) {
           <input type="email" name="email" id="email" />
         </div>
         <div className="flex mb-2">
-          <label htmlFor="">Password:</label>
+          <label htmlFor="password">Password:</label>
           <input type="password" name="password" id="password" />
         </div>
         <div className="flex-form--btn mb-2">

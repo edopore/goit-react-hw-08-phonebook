@@ -11,12 +11,10 @@ function Signup() {
 
   const onSignUpSubmit = event => {
     event.preventDefault();
-    console.log('SignUp');
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
     dispatch(authSignUp({ name, email, password }));
-    console.log(event.target);
   };
 
   return (
