@@ -8,6 +8,14 @@ export const authSlice = createSlice({
     authInfo: {},
     error: null,
   },
+  reducers: {
+    authError: (state, action) => {
+      return {
+        ...state,
+        error: null,
+      };
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(authlogin.pending, state => {
@@ -20,6 +28,7 @@ export const authSlice = createSlice({
         return {
           ...state,
           isLoading: false,
+          error: null,
           authInfo: action.payload,
         };
       })
@@ -40,6 +49,7 @@ export const authSlice = createSlice({
         return {
           ...state,
           isLoading: false,
+          error: null,
           authInfo: action.payload,
         };
       })
@@ -60,6 +70,7 @@ export const authSlice = createSlice({
         return {
           ...state,
           isLoading: false,
+          error: null,
           authInfo: action.payload,
         };
       })
@@ -72,5 +83,7 @@ export const authSlice = createSlice({
       });
   },
 });
+
+export const { authError } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

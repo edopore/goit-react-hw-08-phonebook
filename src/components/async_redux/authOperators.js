@@ -13,6 +13,9 @@ export const authlogin = createAsyncThunk(
         body: JSON.stringify(body),
       });
       const data = await response.json();
+      if(response.status !== 200){
+        return thunkAPI.rejectWithValue(response.statusText);
+      }
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -32,6 +35,9 @@ export const authLogOut = createAsyncThunk(
         },
       });
       const data = await response.json();
+      if(response.status !== 200){
+        return thunkAPI.rejectWithValue(response.statusText);
+      }
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -51,6 +57,9 @@ export const authSignUp = createAsyncThunk(
         body: JSON.stringify(body),
       });
       const data = await response.json();
+      if(response.status !== 201){
+        return thunkAPI.rejectWithValue(data._message);
+      }
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
