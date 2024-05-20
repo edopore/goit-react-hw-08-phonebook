@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './UserMenu.css';
 import { authLogOut } from 'components/async_redux/authOperators';
+import { initializeContactState } from 'components/async_redux/contactSlice';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ export default function UserMenu() {
   const handleLogOut = event => {
     event.preventDefault();
     dispatch(authLogOut(authInfo));
+    dispatch(initializeContactState());
   };
 
   return (

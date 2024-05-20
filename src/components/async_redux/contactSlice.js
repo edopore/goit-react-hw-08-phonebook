@@ -28,6 +28,16 @@ export const contactSlice = createSlice({
         state.contacts = [...result];
       }
     },
+    initializeContactState: state => {
+      return {
+        ...state,
+        contacts: [],
+        base: [],
+        isLoading: false,
+        error: null,
+        filter: '',
+      };
+    },
   },
   extraReducers: builder => {
     builder
@@ -86,6 +96,6 @@ export const contactSlice = createSlice({
   },
 });
 
-export const { filterContact } = contactSlice.actions;
+export const { filterContact, initializeContactState } = contactSlice.actions;
 
 export const contactsReducer = contactSlice.reducer;
